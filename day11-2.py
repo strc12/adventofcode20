@@ -27,33 +27,60 @@ def sitdown(seats,row,col):
         for y in range(col):
             temp.append("")
         outputy.append(temp)
-    changes=[(-1,0),(1,0),(0,1),(0,-1),(-1,1),(-1,-1),(1,1),(1,-1)]
-    same=0
+    changes=[(1,0),(1,-1),(0,-1),(-1,-1),(-1,0),(-1,1),(0,1),(1,1)]
     for x in range(0,row):
         for y in range(0,col):
             tot=0
+            bob=[]
+            #print(x,y,seats[x][y])
             for k,l in changes:
+                
                 newx=x+k
                 newy=y+l
+                #print(x,y,k,l,newx,newy,seats[newx][newy])
+                #if 0<=newx<row and 0<=newy<col:
                 if 0<=newx<row and 0<=newy<col:
-                    if seats[newx][newy]=="#":
-                        tot+=1
+                    #print(seats[newx][newy], newx<row,newx>=0,newy<col, newy>=0)
+                    #if 0<=newx<row and 0<=newy<col:
+                    if newx<row and newx>=0 and newy<col and newy>=0:
+                        c=0
+                        while newx<row and newx>=0 and newy<col and newy>=0 and seats[newx][newy]==".":
+                            #print(seats[newx][newy], newx<row,newx>=0,newy<col, newy>=0)
+                            newx=newx+k
+                            newy=newy+l
+                            c+=1
+                            if not(newx<row and newx>=0 and newy<col and newy>=0):
+                                break
+                    #print(x,y,k,l,newx,newy,seats[newx][newy])
+                   # print(c)
+                    if 0<=newx<row and 0<=newy<col:
+                        bob.append(seats[newx][newy]+str(k)+str(l))
+                        if seats[newx][newy]=="#":
+                            tot+=1 
+                    else:
+                        bob.append(""+str(x+1))
+                c+=1 
+            #print(bob,tot)
             if seats[x][y]==".":
                 outputy[x][y]="."
-            elif tot>=4 and seats[x][y]=="#":
+            elif tot>=5 and seats[x][y]=="#":
                 outputy[x][y]="L"
             elif tot==0 and seats[x][y]=="L":
                 outputy[x][y]="#"  
             else:
                 outputy[x][y]=seats[x][y]
-
+            #print(outputy)
+        #print ("row",x)
     if outputy==seats:
         return outputy,False
     else:
         return outputy,True
 x,r=sitdown(seatso,row,col)
 #printseats(x,row,col)
+#x,r=sitdown(x,row,col)
+#printseats(x,row,col)
 while r==True:
+#print("df")
     x,r=sitdown(x,row,col)
     #printseats(x,row,col)
 count=0

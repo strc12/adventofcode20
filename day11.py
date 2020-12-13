@@ -28,7 +28,6 @@ def sitdown(seats,row,col):
             temp.append("")
         outputy.append(temp)
     changes=[(-1,0),(1,0),(0,1),(0,-1),(-1,1),(-1,-1),(1,1),(1,-1)]
-    same=0
     for x in range(0,row):
         for y in range(0,col):
             tot=0
