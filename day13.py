@@ -1,4 +1,4 @@
-f=open("day13input1.txt","r")
+f=open("day13input.txt","r")
 target=int(f.readline())
 routes=f.readline().split(",")
 print(target)
@@ -9,10 +9,7 @@ for route in routes:
         a=(target//int(route))+1
         b=target%int(route)
         d=target-(a*int(route))
-        
         outs.append([a*int(route),int(route),abs(d)])
-    #else:
-        #outs.append("x")
 mini=999999999999
 for k in outs:
     if k[2]<mini:
