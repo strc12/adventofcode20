@@ -7,19 +7,20 @@ def db(denary):
     return(binary)
 inst=[]
 values={}
-
-f=open("day14input1.txt","r")
+tt=[]
+f=open("day14input.txt","r")
 for line  in f:
     t=line.split("=")
     #print(t)
     if t[0].strip()=="mask":
         mask=t[1].strip()
-     #   print(mask)
+        print(mask)
     else:
         den=int(t[1])
         temp=t[0].split("[")
-        t2=int(temp[1].strip("[")[::-2])
-      #  print(den,t2)
+        #print(temp)
+        t2=int(temp[1].strip("]")[:-2])
+        #print(den,t2)
         inst.append((den,t2))
         binnum=db(den)
         #print(binnum)
@@ -37,10 +38,12 @@ for line  in f:
                 out=out+"1"
             else:
                 out=out+"0"
-        #print(out)
+        #print(int(out,2))
         values[t2]=int(out,2)
-    #print(values)
+        tt.append(int(out,2))
+
 tot=0
 for value in values:
     tot=tot+values[value]
+
 print(tot)
