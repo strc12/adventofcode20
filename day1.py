@@ -1,3 +1,4 @@
+#sfd
 nums=[]
 f=open("nums.txt","r")
 for line in f:
